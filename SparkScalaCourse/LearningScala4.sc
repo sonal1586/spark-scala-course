@@ -48,9 +48,11 @@ object LearningScala4 {
                                                   //| Deep Space Nine
  
  // Let's apply a function literal to a list! map() can be used to apply any function to every item in a collection.
+
 val backwardShips = shipList.map( (ship: String) => {ship.reverse})
                                                   //> backwardShips  : List[String] = List(esirpretnE, tnaifeD, regayoV, eniN eca
                                                   //| pS peeD)
+
  for (ship <- backwardShips) {println(ship)}      //> esirpretnE
                                                   //| tnaifeD
                                                   //| regayoV
@@ -105,6 +107,23 @@ println(archersShip)                              //> Unknown
 // modula operator, like other languages, is %, which gives you the remainder after division. For example, 9 % 3 = 0
 // because 9 is evenly divisible by 3.) Do this first by iterating through all the items in the list and testing each
 // one as you go. Then, do it again by using a filter function on the list instead.
+val scalaList = List.range(1,20)
+println(scalaList)
+val divByThree = scalaList.filter( (x : Int) => Math.abs(x%3)==0)
+
+
+
+// Map function applies the function to each and every value.
+val listRDD = scalaList.map(x => x*x)
+
+// This line is same as
+
+def squareIt(x: Int): Int =
+{
+  x*x
+}
+
+val listRDD2 = scalaList.map(squareIt)
 
 // That's enough for now!
 // There is MUCH more to learn about Scala. We didn't cover many other collection types, including mutable collections.
