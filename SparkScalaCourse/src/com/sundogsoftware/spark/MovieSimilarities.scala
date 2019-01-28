@@ -106,7 +106,7 @@ def loadMovieNames() : Map[Int, String] = {
     
     val joinedRating = ratings.join(ratings)
     
-    //joinedRating.collect().foreach(println)
+    ///joinedRating.collect().foreach(println)
     
     val uniqueRatings = joinedRating.filter(filterDuplicates)
     
