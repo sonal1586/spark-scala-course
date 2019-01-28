@@ -6,6 +6,7 @@ import org.apache.log4j._
 import scala.io.Codec
 import java.nio.charset.CodingErrorAction
 import scala.io.Source
+import scala.math.sqrt
 
 
 object MovieSimilarities {
@@ -61,6 +62,35 @@ def loadMovieNames() : Map[Int, String] = {
     
  }
   
+  type RatingPair = (Double, Double)
+  type RatingPairs = Iterable[RatingPair]
+  
+  def computeCosineSimilarity(ratingPairs:RatingPairs): (Double, Int) = {
+    var numPairs:Int = 0
+    var sum_xx:Double = 0.0
+    var sum_yy:Double = 0.0
+    var sum_xy:Double = 0.0
+    
+    for (pair <- ratingPairs) {
+      val ratingX = pair._1
+      val ratingY = pair._2
+      
+      sum_xx += ratingX * ratingX
+      sum_yy += ratingY * ratingY
+      sum_xy += ratingX * ratingY
+      numPairs += 1
+    }
+    
+    val numerator:Double = sum_xy
+    val denominator = sqrt(sum_xx) * sqrt(sum_yy)
+    
+    var score:Double = 0.0
+    if (denominator != 0) {
+      score = numerator / denominator
+    }
+    
+    return (score, numPairs)
+  }
   def main(args: Array[String]) {
     
     Logger.getLogger("org").setLevel(Level.ERROR)
@@ -82,8 +112,17 @@ def loadMovieNames() : Map[Int, String] = {
     
     //uniqueRatings.collect().foreach(println)
     
-    ///val makePairs = uniqueRatings.map(makePairs)
+    val makePairrdd = uniqueRatings.map(makePairs)
     
+    //makePairrdd.collect().foreach(println)
+    
+    val moviePairRatings = makePairrdd.groupByKey()
+    
+    // moviePairRatings.collect().foreach(println)
+    
+    val moviePairSimilarities = moviePairRatings.mapValues(computeCosineSimilarity).cache()
+    
+    moviePairSimilarities.collect().foreach(println)
         
    
     
