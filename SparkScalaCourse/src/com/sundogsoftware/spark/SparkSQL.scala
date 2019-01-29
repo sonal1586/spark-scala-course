@@ -32,7 +32,7 @@ object SparkSQL {
     
     val people = lines.map(mapper)
     
-    /// Infer the schema, and register the DataSet as a table.
+    //// Infer the schema, and register the DataSet as a table.
     import spark.implicits._
     val schemaPeople = people.toDS
     
