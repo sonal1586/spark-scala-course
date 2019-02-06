@@ -43,7 +43,7 @@ object MostPopularSuperhero {
   
   val mostPopular = flipped.max()
   
-  val mostPopularName = rdd1.lookup(mostPopular._2)(0)
+  val mostPopularName = rdd1.lookup(mostPopular._2)
     println(mostPopularName)
     // Print out our answer!
     println(s"$mostPopularName is the most popular superhero with ${mostPopular._1} co-appearances.") 

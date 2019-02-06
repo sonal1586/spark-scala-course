@@ -32,6 +32,10 @@ object SparkSQL {
     
     val people = lines.map(mapper)
     
+    val rddkkk = spark.createDataFrame(people)
+    
+    rddkkk.select(rddkkk("ID")).show()
+    
     //// Infer the schema, and register the DataSet as a table.
     import spark.implicits._
     val schemaPeople = people.toDS

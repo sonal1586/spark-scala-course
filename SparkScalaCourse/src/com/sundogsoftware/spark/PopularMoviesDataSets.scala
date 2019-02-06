@@ -23,7 +23,7 @@ object PopularMoviesDataSets {
     // Create a Map of Ints to Strings, and populate it from u.item.
     var movieNames:Map[Int, String] = Map()
     
-     val lines = Source.fromFile("../ml-100k/u.item").getLines()
+     val lines = Source.fromFile("../SparkScalaCourse/SparkScala_SampleData/ml-100k/u.item").getLines()
      for (line <- lines) {
        var fields = line.split('|')
        if (fields.length > 1) {

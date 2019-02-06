@@ -106,7 +106,7 @@ def loadMovieNames() : Map[Int, String] = {
     
     val joinedRating = ratings.join(ratings)
     
-    ///joinedRating.collect().foreach(println)
+    //joinedRating.collect().foreach(println)
     
     val uniqueRatings = joinedRating.filter(filterDuplicates)
     
@@ -118,11 +118,11 @@ def loadMovieNames() : Map[Int, String] = {
     
     val moviePairRatings = makePairrdd.groupByKey()
     
-    // moviePairRatings.collect().foreach(println)
+    //moviePairRatings.collect().foreach(println)
     
     val moviePairSimilarities = moviePairRatings.mapValues(computeCosineSimilarity).cache()
     
-    moviePairSimilarities.collect().foreach(println)
+    //moviePairSimilarities.collect().foreach(println)
         
    
     
