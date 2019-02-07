@@ -16,7 +16,7 @@ object DataFrame2 {
   def main(args: Array[String]) {
     
         
-    Logger.getLogger("Org").setLevel(Level.ERROR)
+    Logger.getLogger("org").setLevel(Level.ERROR)
     
     val ssc =  SparkSession
               .builder
