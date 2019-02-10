@@ -66,8 +66,17 @@ object DataFrame3 {
    
    rddDataFrame.show()
    
+   
+   /*********   Creating DataFrame from CSV files using spark-csv module       **********/
+   
+   val df = spark.read.format("csv").load("../SparkScalaCourse/SparkScala_SampleData/ml-100k/Winners_Curse.csv")
+   
+   df.printSchema()
   
-      
+    /*********   Working With Parquet File Format       **********/
+   
+   
+  
     
   }
   
